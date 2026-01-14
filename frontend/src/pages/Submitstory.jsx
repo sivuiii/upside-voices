@@ -1,36 +1,13 @@
 import { useState } from "react";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "../firebase/config";
 
-/* =========================
-   TEMP WARNING KEYWORDS
-   (frontend-only for now)
-   ========================= */
-const WARNING_KEYWORDS = [
-  "suicide",
-  "self harm",
-  "kill",
-  "abuse",
-  "rape",
-  "violence",
-  "threat",
-  "murder",
-];
-
-function containsWarningKeywords(text) {
-  if (!text) return false;
-  const lowerText = text.toLowerCase();
-  return WARNING_KEYWORDS.some((word) => lowerText.includes(word));
-}
-
-/* =========================
-   Submitstory Component
-   ========================= */
 export default function Submitstory() {
   const [fullStory, setFullStory] = useState({
     content: "",
     location: "",
     informAuthorities: false,
     openToConference: false,
-    hasWarning: false, // INTERNAL FLAG
   });
 
   const [publicStory, setPublicStory] = useState({
@@ -38,26 +15,41 @@ export default function Submitstory() {
     location: "",
   });
 
-  /* =========================
-     HANDLE SUBMIT
-     ========================= */
-  function handleSubmit() {
-    const hasWarning = containsWarningKeywords(fullStory.content);
+  const submitStory = httpsCallable(functions, "submitStory");
 
-    const finalPrivateStory = {
-      ...fullStory,
-      hasWarning,
-    };
+  async function handleSubmit() {
+    if (!fullStory.content) {
+      alert("Story cannot be empty");
+      return;
+    }
 
-    const finalPublicStory = {
-      content: publicStory.content,
-      location: publicStory.location,
-    };
+    try {
+      const res = await submitStory({
+        content: fullStory.content,
+        location: fullStory.location,
+        informAuthorities: fullStory.informAuthorities,
+        openToConference: fullStory.openToConference,
+      });
 
-    console.log("PRIVATE STORY (never public):", finalPrivateStory);
-    console.log("PUBLIC STORY:", finalPublicStory);
+      console.log("Backend response:", res.data);
+      alert("Story submitted successfully!");
 
-    alert("Story captured locally. Check console.");
+      // Reset state
+      setFullStory({
+        content: "",
+        location: "",
+        informAuthorities: false,
+        openToConference: false,
+      });
+
+      setPublicStory({
+        content: "",
+        location: "",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Submission failed. Check console.");
+    }
   }
 
   return (
@@ -72,12 +64,10 @@ export default function Submitstory() {
           value={fullStory.content}
           onChange={(e) => {
             const text = e.target.value;
-            const hasWarning = containsWarningKeywords(text);
 
             setFullStory((prev) => ({
               ...prev,
               content: text,
-              hasWarning,
             }));
 
             setPublicStory((prev) => ({
@@ -164,13 +154,6 @@ export default function Submitstory() {
         ) : (
           <p className="text-zinc-500 italic">
             Your public preview will appear here.
-          </p>
-        )}
-
-        {/* INTERNAL INFO (DEV ONLY) */}
-        {fullStory.hasWarning && (
-          <p className="text-xs text-red-400 mt-2">
-            ⚠ Sensitive content detected (not visible to public)
           </p>
         )}
       </div>

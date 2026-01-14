@@ -1,18 +1,153 @@
-[debug] [2026-01-14T20:03:18.512Z] ----------------------------------------------------------------------
-[debug] [2026-01-14T20:03:18.516Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LOQ\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
-[debug] [2026-01-14T20:03:18.516Z] CLI Version:   15.2.1
-[debug] [2026-01-14T20:03:18.516Z] Platform:      win32
-[debug] [2026-01-14T20:03:18.516Z] Node Version:  v24.12.0
-[debug] [2026-01-14T20:03:18.517Z] Time:          Thu Jan 15 2026 01:33:18 GMT+0530 (India Standard Time)
-[debug] [2026-01-14T20:03:18.517Z] ----------------------------------------------------------------------
+[debug] [2026-01-14T20:59:06.286Z] ----------------------------------------------------------------------
+[debug] [2026-01-14T20:59:06.297Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sivna\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2026-01-14T20:59:06.297Z] CLI Version:   15.2.1
+[debug] [2026-01-14T20:59:06.297Z] Platform:      win32
+[debug] [2026-01-14T20:59:06.297Z] Node Version:  v22.18.0
+[debug] [2026-01-14T20:59:06.297Z] Time:          Thu Jan 15 2026 02:29:06 GMT+0530 (India Standard Time)
+[debug] [2026-01-14T20:59:06.298Z] ----------------------------------------------------------------------
 [debug] 
-[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[debug] [2026-01-14T20:59:09.216Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-14T20:59:09.217Z] > authorizing via signed-in user (sivnandnanduz@gmail.com)
+[debug] [2026-01-14T20:59:09.282Z] openjdk version "25.0.1" 2025-10-21 LTS
+OpenJDK Runtime Environment Temurin-25.0.1+8 (build 25.0.1+8-LTS)
+
+[debug] [2026-01-14T20:59:09.283Z] OpenJDK 64-Bit Server VM Temurin-25.0.1+8 (build 25.0.1+8-LTS, mixed mode, sharing)
+
+[debug] [2026-01-14T20:59:09.295Z] Parsed Java major version: 25
+[info] i  emulators: Starting emulators: auth, functions, firestore, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, extensions"}}
+[debug] [2026-01-14T20:59:09.297Z] Checked if tokens are valid: false, expires at: 1768425147579
+[debug] [2026-01-14T20:59:09.298Z] Checked if tokens are valid: false, expires at: 1768425147579
+[debug] [2026-01-14T20:59:09.298Z] > refreshing access token with scopes: []
+[debug] [2026-01-14T20:59:09.299Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-01-14T20:59:09.300Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-14T20:59:09.578Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-01-14T20:59:09.578Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-01-14T20:59:09.587Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/upside-voices [none]
+[debug] [2026-01-14T20:59:12.747Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/upside-voices 200
+[debug] [2026-01-14T20:59:12.747Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/upside-voices {"projectNumber":"3745953966","projectId":"upside-voices","lifecycleState":"ACTIVE","name":"Upside-voices","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-01-14T16:45:50.461366Z"}
+[debug] [2026-01-14T20:59:12.766Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.766Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.766Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.766Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.766Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-01-14T20:59:12.774Z] Found emulator hub locator: {"version":"15.2.1","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":16284}
+[debug] [2026-01-14T20:59:12.774Z] Write emulator hub locator at C:\Users\sivna\AppData\Local\Temp\hub-upside-voices.json
+[debug] [2026-01-14T20:59:12.783Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2026-01-14T20:59:12.788Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.788Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.788Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-01-14T20:59:12.788Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-01-14T20:59:12.859Z] defaultcredentials: writing to file C:\Users\sivna\AppData\Roaming\firebase\sivnandnanduz_gmail_com_application_default_credentials.json
+[debug] [2026-01-14T20:59:12.864Z] Setting GAC to C:\Users\sivna\AppData\Roaming\firebase\sivnandnanduz_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\sivna\\AppData\\Roaming\\firebase\\sivnandnanduz_gmail_com_application_default_credentials.json"}}
+[debug] [2026-01-14T20:59:12.865Z] Checked if tokens are valid: true, expires at: 1768427948578
+[debug] [2026-01-14T20:59:12.865Z] Checked if tokens are valid: true, expires at: 1768427948578
+[debug] [2026-01-14T20:59:12.865Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/upside-voices/adminSdkConfig [none]
+[debug] [2026-01-14T20:59:13.662Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/upside-voices/adminSdkConfig 200
+[debug] [2026-01-14T20:59:13.663Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/upside-voices/adminSdkConfig {"projectId":"upside-voices","storageBucket":"upside-voices.firebasestorage.app"}
+[warn] !  firestore: Cloud Firestore Emulator does not support multiple databases yet. {"metadata":{"emulator":{"name":"firestore"},"message":"Cloud Firestore Emulator does not support multiple databases yet."}}
+[warn] !  firestore: Did not find a Cloud Firestore rules file specified in a firebase.json config file. {"metadata":{"emulator":{"name":"firestore"},"message":"Did not find a Cloud Firestore rules file specified in a firebase.json config file."}}
+[warn] !  firestore: The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration. {"metadata":{"emulator":{"name":"firestore"},"message":"The emulator will default to allowing all reads and writes. Learn more about this option: https://firebase.google.com/docs/emulator-suite/install_and_configure#security_rules_configuration."}}
+[debug] [2026-01-14T20:59:13.680Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2026-01-14T20:59:13.680Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2026-01-14T20:59:13.680Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\sivna\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.20.2.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","upside-voices","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false,"shell":false,"port":8080} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\sivna\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.20.2.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"upside-voices\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false,\"shell\":false,\"port\":8080}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[debug] [2026-01-14T20:59:14.174Z] WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2 (file:/C:/Users/sivna/.cache/firebase/emulators/cloud-firestore-emulator-v1.20.2.jar)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+ {"metadata":{"emulator":{"name":"firestore"},"message":"WARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2 (file:/C:/Users/sivna/.cache/firebase/emulators/cloud-firestore-emulator-v1.20.2.jar)\nWARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2\nWARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release\r\n"}}
+[debug] [2026-01-14T20:59:15.405Z] Jan 15, 2026 2:29:15 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+INFO: Started WebSocket server on ws://127.0.0.1:9150
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 15, 2026 2:29:15 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\r\nINFO: Started WebSocket server on ws://127.0.0.1:9150\r\n"}}
+[debug] [2026-01-14T20:59:15.507Z] API endpoint: http://127.0.0.1:8080
+ {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://127.0.0.1:8080\n"}}
+[debug] [2026-01-14T20:59:15.508Z] If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
+
+If you are running a Firestore in Datastore Mode project, run:
+
+   export DATASTORE_EMULATOR_HOST=127.0.0.1:8080
+
+Note: Support for Datastore Mode is in preview. If you encounter any bugs please file at https://github.com/firebase/firebase-tools/issues.
+Dev App Server is now running.
+
+ {"metadata":{"emulator":{"name":"firestore"},"message":"If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\r\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nIf you are running a Firestore in Datastore Mode project, run:\r\n\n   export DATASTORE_EMULATOR_HOST=127.0.0.1:8080\n\nNote: Support for Datastore Mode is in preview. If you encounter any bugs please file at https://github.com/firebase/firebase-tools/issues.\r\nDev App Server is now running.\n\r\n"}}
+[info] +  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
+[debug] [2026-01-14T20:59:22.260Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "C:\Users\sivna\Documents\GitHub\upside-voices\backend\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\sivna\\Documents\\GitHub\\upside-voices\\backend\\functions\" for Cloud Functions..."}}
+[debug] [2026-01-14T20:59:22.282Z] Validating nodejs source
+[debug] [2026-01-14T20:59:24.883Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "echo \"lint disabled\"",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.4.1"
+  },
+  "private": true
+}
+[debug] [2026-01-14T20:59:24.884Z] Building nodejs source
+[debug] [2026-01-14T20:59:24.885Z] Failed to find version of module node: reached end of search path C:\Users\sivna\Documents\GitHub\upside-voices\backend\functions\node_modules
+[warn] !  functions: Your requested "node" version "24" doesn't match your global version "22". Using node@22 from host. 
+[debug] [2026-01-14T20:59:24.897Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-01-14T20:59:24.913Z] Found firebase-functions binary at 'C:\Users\sivna\Documents\GitHub\upside-voices\backend\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8645
+
+[debug] [2026-01-14T20:59:27.072Z] Got response from /__/functions.yaml {"endpoints":{"submitStory":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"submitStory"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2026-01-14T20:59:31.108Z] defaultcredentials: writing to file C:\Users\sivna\AppData\Roaming\firebase\sivnandnanduz_gmail_com_application_default_credentials.json
+[debug] [2026-01-14T20:59:31.109Z] Setting GAC to C:\Users\sivna\AppData\Roaming\firebase\sivnandnanduz_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\sivna\\AppData\\Roaming\\firebase\\sivnandnanduz_gmail_com_application_default_credentials.json"}}
+[info] +  functions: Loaded functions definitions from source: submitStory. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: submitStory."}}
+[info] +  functions[us-central1-submitStory]: http function initialized (http://127.0.0.1:5001/upside-voices/us-central1/submitStory). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/upside-voices/us-central1/submitStory)."}}
+[debug] [2026-01-14T20:59:31.123Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
 [info] 
-[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
-[info] 
-[info] i  To change your preferences at any time, run `firebase logout` and `firebase login` again. 
-[info] 
-[info] Visit this URL on this device to log in:
-[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=379228691&redirect_uri=http%3A%2F%2Flocalhost%3A9005
-[info] 
-[info] Waiting for authentication...
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI              │
+├────────────────┼────────────────┼──────────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:4000/auth       │
+├────────────────┼────────────────┼──────────────────────────────────┤
+│ Functions      │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────────┼────────────────┼──────────────────────────────────┤
+│ Firestore      │ 127.0.0.1:8080 │ http://127.0.0.1:4000/firestore  │
+├────────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions     │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500, 9150
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-01-14T20:59:34.799Z] Jan 15, 2026 2:29:34 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 15, 2026 2:29:34 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\r\nINFO: Connected to new websocket client\r\n"}}
+[debug] [2026-01-14T20:59:58.462Z] Jan 15, 2026 2:29:58 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Jan 15, 2026 2:29:58 AM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\r\nINFO: Websocket client disconnected\r\n"}}
+[debug] [2026-01-14T21:17:01.761Z] >>> [apiv2][query] POST http://127.0.0.1:5001/functions/projects/upside-voices/trigger_multicast [none]
+[debug] [2026-01-14T21:17:01.761Z] >>> [apiv2][body] POST http://127.0.0.1:5001/functions/projects/upside-voices/trigger_multicast {"eventId":"bee58a0c-51ed-420d-a51a-c930096647da","eventType":"providers/firebase.auth/eventTypes/user.create","resource":{"name":"projects/upside-voices","service":"firebaseauth.googleapis.com"},"params":{},"timestamp":"2026-01-14T21:17:01.760Z","data":{"uid":"Nd5AGyAnWHgWQgi6Mi0XLazIaV6J","metadata":{"creationTime":"2026-01-14T21:17:01.759Z","lastSignInTime":"2026-01-14T21:17:01.759Z"},"customClaims":{}}}
+[debug] [2026-01-14T21:17:01.772Z] <<< [apiv2][status] POST http://127.0.0.1:5001/functions/projects/upside-voices/trigger_multicast 200
+[debug] [2026-01-14T21:17:01.772Z] <<< [apiv2][body] POST http://127.0.0.1:5001/functions/projects/upside-voices/trigger_multicast {"status":"multicast_acknowledged"}
