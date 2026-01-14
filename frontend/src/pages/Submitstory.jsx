@@ -17,9 +17,80 @@ export default function Submitstory() {
   <div className="p-6 text-white grid grid-cols-1 md:grid-cols-2 gap-6">
     
     {/* LEFT: INPUT */}
-    <div className="space-y-4">
-      <h1 className="text-xl">Write your story</h1>
-    </div>
+   <div className="space-y-4">
+  <h1 className="text-xl">Write your story</h1>
+
+  <textarea
+    className="w-full h-40 p-3 bg-zinc-800 rounded"
+    placeholder="Write your story..."
+    value={fullStory.content}
+    onChange={(e) => {
+      const text = e.target.value;
+
+      setFullStory((prev) => ({
+        ...prev,
+        content: text,
+      }));
+
+      setPublicStory((prev) => ({
+        ...prev,
+        content: text,
+      }));
+    }}
+  />
+
+  <select
+    className="w-full p-2 bg-zinc-800 rounded"
+    value={fullStory.location}
+    onChange={(e) => {
+      const loc = e.target.value;
+
+      setFullStory((prev) => ({
+        ...prev,
+        location: loc,
+      }));
+
+      setPublicStory((prev) => ({
+        ...prev,
+        location: loc,
+      }));
+    }}
+  >
+    <option value="">Select location</option>
+    <option value="Hawkins High School">Hawkins High School</option>
+    <option value="Starcourt Mall">Starcourt Mall</option>
+    <option value="Byers House">Byers House</option>
+  </select>
+
+  <label className="flex items-center gap-2 text-sm">
+    <input
+      type="checkbox"
+      checked={fullStory.informAuthorities}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          informAuthorities: e.target.checked,
+        }))
+      }
+    />
+    Inform relevant authorities
+  </label>
+
+  <label className="flex items-center gap-2 text-sm">
+    <input
+      type="checkbox"
+      checked={fullStory.openToConference}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          openToConference: e.target.checked,
+        }))
+      }
+    />
+    Open to anonymous group conference
+  </label>
+</div>
+
 
     {/* RIGHT: PREVIEW */}
     <div className="bg-zinc-900 p-4 rounded space-y-3">
