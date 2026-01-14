@@ -25,11 +25,11 @@ const functions = getFunctions(app);
 /* =========================
    Emulator Connection
    (ONLY on localhost)
-   ========================= */
+   ========================= 
 if (window.location.hostname === "localhost") {
   connectAuthEmulator(auth, "http://localhost:9099");
   connectFirestoreEmulator(db, "localhost", 8080);
   connectFunctionsEmulator(functions, "localhost", 5001);
-}
+}*/
 
 export { auth, db, functions };
