@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "../firebase/config";
 
 export default function Submitstory() {
   const [fullStory, setFullStory] = useState({
@@ -14,6 +16,43 @@ export default function Submitstory() {
     location: "",
   });
 
+  const submitStory = httpsCallable(functions, "submitStory");
+
+  async function handleSubmit() {
+    if (!fullStory.content) {
+      alert("Story cannot be empty");
+      return;
+    }
+
+    try {
+      const res = await submitStory({
+        content: fullStory.content,
+        location: fullStory.location,
+        informAuthorities: fullStory.informAuthorities,
+        openToConference: fullStory.openToConference,
+      });
+
+      console.log("Backend response:", res.data);
+      alert("Story submitted successfully!");
+
+      // Reset state
+      setFullStory({
+        content: "",
+        location: "",
+        informAuthorities: false,
+        openToConference: false,
+      });
+
+      setPublicStory({
+        content: "",
+        location: "",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Submission failed. Check console.");
+    }
+  }
+
   return (
   <div className="p-6 text-white grid grid-cols-1 md:grid-cols-2 gap-6">
     
@@ -21,17 +60,17 @@ export default function Submitstory() {
    <div className="space-y-4">
   <h1 className="text-xl">Write your story</h1>
 
-  <textarea
-    className="w-full h-40 p-3 bg-zinc-800 rounded"
-    placeholder="Write your story..."
-    value={fullStory.content}
-    onChange={(e) => {
-      const text = e.target.value;
+        <textarea
+          className="w-full h-40 p-3 bg-zinc-800 rounded"
+          placeholder="Write your story..."
+          value={fullStory.content}
+          onChange={(e) => {
+            const text = e.target.value;
 
-      setFullStory((prev) => ({
-        ...prev,
-        content: text,
-      }));
+            setFullStory((prev) => ({
+              ...prev,
+              content: text,
+            }));
 
       setPublicStory((prev) => ({
         ...prev,
@@ -99,23 +138,21 @@ export default function Submitstory() {
         This is exactly what will be public
       </h2>
 
-      {publicStory.content ? (
-        <>
-          <p>{publicStory.content}</p>
-          {publicStory.location && (
-            <p className="text-sm text-zinc-400">
-              Location: {publicStory.location}
-            </p>
-          )}
-        </>
-      ) : (
-        <p className="text-zinc-500 italic">
-          Your public preview will appear here.
-        </p>
-      )}
+        {publicStory.content ? (
+          <>
+            <p>{publicStory.content}</p>
+            {publicStory.location && (
+              <p className="text-sm text-zinc-400">
+                Location: {publicStory.location}
+              </p>
+            )}
+          </>
+        ) : (
+          <p className="text-zinc-500 italic">
+            Your public preview will appear here.
+          </p>
+        )}
+      </div>
     </div>
-
-  </div>
-);
-
+  );
 }
