@@ -1,7 +1,8 @@
 
 import { useState } from "react";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "../firebase/config";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase/config";
+
 
 export default function Submitstory() {
   const [fullStory, setFullStory] = useState({
@@ -16,42 +17,43 @@ export default function Submitstory() {
     location: "",
   });
 
-  const submitStory = httpsCallable(functions, "submitStory");
 
-  async function handleSubmit() {
-    if (!fullStory.content) {
-      alert("Story cannot be empty");
-      return;
-    }
-
-    try {
-      const res = await submitStory({
-        content: fullStory.content,
-        location: fullStory.location,
-        informAuthorities: fullStory.informAuthorities,
-        openToConference: fullStory.openToConference,
-      });
-
-      console.log("Backend response:", res.data);
-      alert("Story submitted successfully!");
-
-      // Reset state
-      setFullStory({
-        content: "",
-        location: "",
-        informAuthorities: false,
-        openToConference: false,
-      });
-
-      setPublicStory({
-        content: "",
-        location: "",
-      });
-    } catch (err) {
-      console.error(err);
-      alert("Submission failed. Check console.");
-    }
+ async function handleSubmit() {
+  if (!publicStory.content || !publicStory.location) {
+    alert("Story text and location are required.");
+    return;
   }
+
+  try {
+    // Write PUBLIC story
+    await addDoc(collection(db, "stories_public"), {
+      storyId: crypto.randomUUID(),
+      storyText: publicStory.content,
+      fictionalLocation: publicStory.location,
+      triggerTags: [], // we’ll wire this later
+      createdAt: serverTimestamp(),
+    });
+
+    alert("Story shared anonymously.");
+
+    // Reset state
+    setFullStory({
+      content: "",
+      location: "",
+      informAuthorities: false,
+      openToConference: false,
+    });
+
+    setPublicStory({
+      content: "",
+      location: "",
+    });
+  } catch (err) {
+    console.error("Submission failed:", err);
+    alert("Submission failed. Check console.");
+  }
+}
+ 
 
   return (
   <div className="p-6 text-white grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,6 +131,13 @@ export default function Submitstory() {
     />
     Open to anonymous group conference
   </label>
+  <button
+  onClick={handleSubmit}
+  className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-white"
+>
+  Submit
+</button>
+
 </div>
 
 
