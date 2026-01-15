@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Link } from "react-router-dom";
+import GlitchButton from "../components/GlitchButton.jsx";
 
 export default function Home() {
   const [stories, setStories] = useState([]);
@@ -27,7 +28,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-gray-100">
+    <div className="relative min-h-screen bg-background text-default">
       <div className="fixed inset-0 z-50 bg-scanlines opacity-20 pointer-events-none" />
 
       <div className="relative w-full">
@@ -67,13 +68,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/submit"
-                className="bg-[#dc2626] hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg shadow-red-900/20 transition-all transform hover:scale-105"
+                className="glitch-btn bg-[#dc2626] hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg shadow-red-900/20 transition-all transform hover:scale-105"
               >
                 Share a story
               </Link>
               <Link
                 to="/map"
-                className="bg-transparent border border-gray-600 text-gray-200 hover:border-gray-400 hover:text-white font-medium py-3 px-8 rounded transition-all backdrop-blur-sm bg-black/30"
+                className="glitch-btn bg-transparent border border-gray-600 text-gray-200 hover:border-gray-400 hover:text-white font-medium py-3 px-8 rounded transition-all backdrop-blur-sm bg-black/30"
               >
                 View Hawkins map
               </Link>

@@ -1,0 +1,16 @@
+.theme-switch {
+  background: transparent;
+  border: 2px solid var(--accent-color, #ff4d4d);
+  color: var(--accent-color, #ff4d4d);
+  font-size: 1.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px var(--accent-color, #ff4d4d), 0 0 12px var(--accent-color, #ff4d4d);
+}
+.theme-switch:hover {
+  background: var(--accent-color, #ff4d4d);
+  color: #111;
+  box-shadow: 0 0 12px var(--accent-color, #ff4d4d), 0 0 18px var(--accent-color, #ff4d4d);
+}

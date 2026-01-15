@@ -5,15 +5,35 @@
   text-align: center;
 }
 
+:root {
+  --primary-color: #ff4d4d;
+  --background-color: #1a1a2e;
+  --accent-color: #00ffcc;
+  --text-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --background-color: #1a1a2e;
+  --text-color: #e0e0e0;
+}
+
+[data-theme="light"] {
+  --background-color: #f5f5f5;
+  --text-color: #111111;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +42,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +60,34 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Theme utility classes */
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.bg-background {
+  background-color: var(--background-color);
+}
+
+.text-default {
+  color: var(--text-color);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
 }

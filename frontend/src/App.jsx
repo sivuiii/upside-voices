@@ -10,6 +10,7 @@ import Profile from "./pages/profile";
 import MapPage from "./components/map";
 import Login from "./pages/Login";
 import SceneFX from "./components/SceneFX";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <ThemeSwitcher />
       <SceneFX />
       <div className="app-content">
         <Routes>
