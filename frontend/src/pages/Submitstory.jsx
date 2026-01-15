@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import TopNav from "../components/TopNav";
 import { detectTriggers } from "../utils/detectTriggers";
@@ -8,15 +8,20 @@ import { detectTriggers } from "../utils/detectTriggers";
 
 export default function Submitstory() {
   const [fullStory, setFullStory] = useState({
+    title: "",
     content: "",
+    personName: "",
+    age: "",
+    latitude: "",
+    longitude: "",
     location: "",
     informAuthorities: false,
     openToConference: false,
   });
 
   const [publicStory, setPublicStory] = useState({
+    title: "",
     content: "",
-    location: "",
   });
 
 
@@ -27,38 +32,78 @@ export default function Submitstory() {
     return;
   }
 
-  if (!publicStory.content || !publicStory.location) {
-    alert("Story text and location are required.");
+  if (!publicStory.title || !publicStory.content) {
+    alert("Story title and content are required.");
     return;
   }
 
   try {
     const triggers = detectTriggers(publicStory.content);
+    const storyId = crypto.randomUUID();
 
-await addDoc(collection(db, "stories_public"), {
-  storyId: crypto.randomUUID(),
-  storyText: publicStory.content,
-  fictionalLocation: publicStory.location,
-  userId: currentUser.uid,
-  authorName: currentUser.displayName ?? "Anonymous",
-  triggerTags: triggers,
-  createdAt: serverTimestamp(),
-});
+    const clamp01to100 = (value) => {
+      const num = Number(value);
+      if (!Number.isFinite(num)) return null;
+      return Math.min(100, Math.max(0, num));
+    };
+
+    const lat = clamp01to100(fullStory.latitude);
+    const lng = clamp01to100(fullStory.longitude);
+
+    const coordinates =
+      lat !== null && lng !== null
+        ? {
+            latitude: lat,
+            longitude: lng,
+          }
+        : null;
+
+    await setDoc(doc(db, "stories_public", storyId), {
+      storyId,
+      title: publicStory.title,
+      content: publicStory.content,
+      hasHotspot: Boolean(fullStory.informAuthorities && coordinates),
+      hotspot: fullStory.informAuthorities && coordinates
+        ? { lat: coordinates.latitude, lng: coordinates.longitude }
+        : null,
+      createdAt: serverTimestamp(),
+    });
+
+    await setDoc(doc(db, "stories_private", storyId), {
+      storyId,
+      title: fullStory.title,
+      content: fullStory.content,
+      personName: fullStory.personName,
+      age: fullStory.age,
+      coordinates,
+      location: fullStory.location,
+      userId: currentUser.uid,
+      authorName: currentUser.displayName ?? "Anonymous",
+      triggerTags: triggers,
+      informAuthorities: fullStory.informAuthorities,
+      openToConference: fullStory.openToConference,
+      createdAt: serverTimestamp(),
+    });
 
 
     alert("Story shared anonymously.");
 
     // Reset state
     setFullStory({
+      title: "",
       content: "",
+      personName: "",
+      age: "",
+      latitude: "",
+      longitude: "",
       location: "",
       informAuthorities: false,
       openToConference: false,
     });
 
     setPublicStory({
+      title: "",
       content: "",
-      location: "",
     });
   } catch (err) {
     console.error("Submission failed:", err);
@@ -76,6 +121,25 @@ await addDoc(collection(db, "stories_public"), {
     {/* LEFT: INPUT */}
    <div className="space-y-4">
   <h1 className="text-xl">Write your story</h1>
+
+        <input
+          className="w-full p-3 bg-zinc-800 rounded"
+          placeholder="Story title"
+          value={fullStory.title}
+          onChange={(e) => {
+            const text = e.target.value;
+
+            setFullStory((prev) => ({
+              ...prev,
+              title: text,
+            }));
+
+            setPublicStory((prev) => ({
+              ...prev,
+              title: text,
+            }));
+          }}
+        />
 
         <textarea
           className="w-full h-40 p-3 bg-zinc-800 rounded"
@@ -96,28 +160,55 @@ await addDoc(collection(db, "stories_public"), {
     }}
   />
 
-  <select
-    className="w-full p-2 bg-zinc-800 rounded"
-    value={fullStory.location}
-    onChange={(e) => {
-      const loc = e.target.value;
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <input
+      className="w-full p-3 bg-zinc-800 rounded"
+      placeholder="Person's name (private)"
+      value={fullStory.personName}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          personName: e.target.value,
+        }))
+      }
+    />
+    <input
+      className="w-full p-3 bg-zinc-800 rounded"
+      placeholder="Age (private)"
+      value={fullStory.age}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          age: e.target.value,
+        }))
+      }
+    />
+  </div>
 
-      setFullStory((prev) => ({
-        ...prev,
-        location: loc,
-      }));
-
-      setPublicStory((prev) => ({
-        ...prev,
-        location: loc,
-      }));
-    }}
-  >
-    <option value="">Select location</option>
-    <option value="Hawkins High School">Hawkins High School</option>
-    <option value="Starcourt Mall">Starcourt Mall</option>
-    <option value="Byers House">Byers House</option>
-  </select>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <input
+      className="w-full p-3 bg-zinc-800 rounded"
+      placeholder="Latitude (private)"
+      value={fullStory.latitude}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          latitude: e.target.value,
+        }))
+      }
+    />
+    <input
+      className="w-full p-3 bg-zinc-800 rounded"
+      placeholder="Longitude (private)"
+      value={fullStory.longitude}
+      onChange={(e) =>
+        setFullStory((prev) => ({
+          ...prev,
+          longitude: e.target.value,
+        }))
+      }
+    />
+  </div>
 
   <label className="flex items-center gap-2 text-sm">
     <input
@@ -162,14 +253,12 @@ await addDoc(collection(db, "stories_public"), {
         This is exactly what will be public
       </h2>
 
-        {publicStory.content ? (
+        {publicStory.content || publicStory.title ? (
           <>
-            <p>{publicStory.content}</p>
-            {publicStory.location && (
-              <p className="text-sm text-zinc-400">
-                Location: {publicStory.location}
-              </p>
+            {publicStory.title && (
+              <h3 className="text-lg font-semibold">{publicStory.title}</h3>
             )}
+            {publicStory.content && <p>{publicStory.content}</p>}
           </>
         ) : (
           <p className="text-zinc-500 italic">

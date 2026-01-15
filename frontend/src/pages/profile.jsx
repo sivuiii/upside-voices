@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import TopNav from "../components/TopNav";
 import { auth, db } from "../firebase/config";
 
@@ -18,7 +19,7 @@ export default function Profile() {
       }
 
       try {
-        const storiesRef = collection(db, "stories_public");
+        const storiesRef = collection(db, "stories_private");
         const userStoriesQuery = query(
           storiesRef,
           where("userId", "==", currentUser.uid)
@@ -44,12 +45,21 @@ export default function Profile() {
       <TopNav />
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-2xl font-semibold">Your stories</h1>
-        <Link
-          to="/submit"
-          className="px-4 py-2 rounded bg-red-600 hover:bg-red-500 text-white text-sm"
-        >
-          Share a story
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/submit"
+            className="px-4 py-2 rounded bg-red-600 hover:bg-red-500 text-white text-sm"
+          >
+            Share a story
+          </Link>
+          <button
+            type="button"
+            onClick={() => signOut(auth)}
+            className="px-4 py-2 rounded border border-zinc-700 text-sm text-zinc-200 hover:border-red-500/60"
+          >
+            Log out
+          </button>
+        </div>
       </div>
 
       {loading && (
@@ -65,10 +75,10 @@ export default function Profile() {
       {!loading &&
         stories.map((story) => (
           <div key={story.id} className="p-4 bg-zinc-900 border border-zinc-800 rounded">
-            <p className="text-lg">{story.storyText ?? story.content}</p>
-            {(story.fictionalLocation ?? story.location) && (
+            <p className="text-lg">{story.title ?? story.storyText ?? story.content}</p>
+            {story.content && (
               <p className="text-sm text-zinc-400 mt-2">
-                Location: {story.fictionalLocation ?? story.location}
+                {story.content}
               </p>
             )}
           </div>

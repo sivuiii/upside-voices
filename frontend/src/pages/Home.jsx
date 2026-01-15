@@ -107,15 +107,12 @@ export default function Home() {
               >
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#6366f1] opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h3 className="text-[#6366f1] font-semibold text-xl mb-2 text-glow-blue group-hover:text-indigo-400">
-                  {story.storyText ?? story.content}
+                  {story.title ?? story.storyText ?? story.content}
                 </h3>
-                {(story.fictionalLocation ?? story.location) && (
-                  <div className="flex items-center text-gray-400 text-sm">
-                    <span className="mr-2 opacity-70">Location:</span>
-                    <span className="text-gray-300">
-                      {story.fictionalLocation ?? story.location}
-                    </span>
-                  </div>
+                {story.content && (
+                  <p className="text-sm text-gray-400 line-clamp-2">
+                    {story.content}
+                  </p>
                 )}
               </Link>
             ))}

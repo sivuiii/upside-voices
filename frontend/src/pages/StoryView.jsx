@@ -101,15 +101,14 @@ const [acknowledged, setAcknowledged] = useState(false);
   return (
     <div className="p-6 text-white space-y-4">
       <TopNav />
-      <p className="whitespace-pre-wrap text-lg">
-        {story.storyText ?? story.content}
-      </p>
-
-      {(story.fictionalLocation ?? story.location) && (
-        <p className="text-sm text-zinc-400">
-          Location: {story.fictionalLocation ?? story.location}
-        </p>
+      {story.title && (
+        <h1 className="text-2xl font-semibold text-white">
+          {story.title}
+        </h1>
       )}
+      <p className="whitespace-pre-wrap text-lg">
+        {story.content ?? story.storyText}
+      </p>
     </div>
   );
 }
