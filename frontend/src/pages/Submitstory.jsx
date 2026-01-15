@@ -1,7 +1,8 @@
 
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { auth, db } from "../firebase/config";
+import TopNav from "../components/TopNav";
 import { detectTriggers } from "../utils/detectTriggers";
 
 
@@ -38,6 +39,8 @@ await addDoc(collection(db, "stories_public"), {
   storyId: crypto.randomUUID(),
   storyText: publicStory.content,
   fictionalLocation: publicStory.location,
+  userId: currentUser.uid,
+  authorName: currentUser.displayName ?? "Anonymous",
   triggerTags: triggers,
   createdAt: serverTimestamp(),
 });
@@ -66,6 +69,9 @@ await addDoc(collection(db, "stories_public"), {
 
   return (
   <div className="p-6 text-white grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="md:col-span-2">
+      <TopNav />
+    </div>
     
     {/* LEFT: INPUT */}
    <div className="space-y-4">

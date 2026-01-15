@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import TopNav from "../components/TopNav";
 import { auth } from "../firebase/config";
 
 export default function Login() {
@@ -22,8 +23,10 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-6 space-y-4">
+    <div className="min-h-screen bg-zinc-950 text-white p-6">
+      <div className="max-w-5xl mx-auto space-y-6">
+        <TopNav showProfile={false} />
+        <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-6 space-y-4">
         <h1 className="text-2xl font-semibold">Sign in</h1>
         <p className="text-zinc-400">
           Anonymous login is disabled. Please continue with Google.
@@ -43,6 +46,7 @@ export default function Login() {
         >
           {loading ? "Signing in…" : "Continue with Google"}
         </button>
+        </div>
       </div>
     </div>
   );

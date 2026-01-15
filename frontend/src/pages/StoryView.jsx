@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
+import TopNav from "../components/TopNav";
 
 export default function StoryView() {
   const { id } = useParams();
@@ -41,16 +42,18 @@ const [acknowledged, setAcknowledged] = useState(false);
 
   if (loading) {
     return (
-      <div className="p-6 text-zinc-400">
-        Listening for the story…
+      <div className="p-6 text-zinc-400 space-y-4">
+        <TopNav />
+        <div>Listening for the story…</div>
       </div>
     );
   }
 
   if (!story) {
     return (
-      <div className="p-6 text-zinc-500 italic">
-        This story could not be found.
+      <div className="p-6 text-zinc-500 italic space-y-4">
+        <TopNav />
+        <div>This story could not be found.</div>
       </div>
     );
   }
@@ -83,7 +86,7 @@ const [acknowledged, setAcknowledged] = useState(false);
           </button>
 
           <button
-            onClick={() => window.history.back()}
+            onClick={() => globalThis.history.back()}
             className="px-4 py-2 bg-zinc-700 rounded"
           >
             Go Back
@@ -97,6 +100,7 @@ const [acknowledged, setAcknowledged] = useState(false);
 
   return (
     <div className="p-6 text-white space-y-4">
+      <TopNav />
       <p className="whitespace-pre-wrap text-lg">
         {story.storyText ?? story.content}
       </p>
