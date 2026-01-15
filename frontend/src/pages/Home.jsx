@@ -30,16 +30,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-background text-default">
+    <div className="relative min-h-screen bg-transparent text-default">
       <div className="fixed inset-0 z-50 bg-scanlines opacity-20 pointer-events-none" />
 
       <div className="relative w-full">
         <div className="absolute inset-0 h-[600px] w-full overflow-hidden z-0">
-          <img
-            alt="Dark atmospheric street scene resembling Hawkins Upside Down"
-            className="w-full h-full object-cover object-center opacity-40 grayscale-[30%]"
-            src="https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&w=2560&auto=format&fit=crop"
-          />
+
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/90 via-[#050505]/40 to-transparent" />
         </div>
