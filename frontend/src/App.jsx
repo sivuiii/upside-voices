@@ -7,8 +7,9 @@ import Home from "./pages/Home";
 import Submitstory from "./pages/Submitstory";
 import StoryView from "./pages/StoryView";
 import Profile from "./pages/profile";
-import MapPage from "./components/map";   // ✅ ADDED
+import MapPage from "./components/map";
 import Login from "./pages/Login";
+import SceneFX from "./components/SceneFX";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -32,18 +33,23 @@ export default function App() {
   }
 
   return (
-    <Routes>
-      {user ? (
-        <>
-          <Route path="/" element={<Home />} />
-          <Route path="/submit" element={<Submitstory />} />
-          <Route path="/story/:id" element={<StoryView />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/map" element={<MapPage />} />   {/* ✅ ADDED */}
-        </>
-      ) : (
-        <Route path="*" element={<Login />} />
-      )}
-    </Routes>
+    <div className="app-shell">
+      <SceneFX />
+      <div className="app-content">
+        <Routes>
+          {user ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/submit" element={<Submitstory />} />
+              <Route path="/story/:id" element={<StoryView />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/map" element={<MapPage />} />
+            </>
+          ) : (
+            <Route path="*" element={<Login />} />
+          )}
+        </Routes>
+      </div>
+    </div>
   );
 }
