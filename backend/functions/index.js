@@ -73,8 +73,10 @@ exports.submitStory = functions.https.onCall(async (data, context) => {
      WRITE PUBLIC STORY
      ========================= */
   await admin.firestore().collection("stories_public").doc(storyId).set({
-    content,
-    location,
+    storyText: content,
+    fictionalLocation: location,
+    content, // legacy compatibility
+    location, // legacy compatibility
     intensityScore, // NEVER exposed meaningfully
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
   });
