@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 
 export default function Submitstory() {
@@ -19,6 +19,12 @@ export default function Submitstory() {
 
 
  async function handleSubmit() {
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    alert("Please sign in to submit a story.");
+    return;
+  }
+
   if (!publicStory.content || !publicStory.location) {
     alert("Story text and location are required.");
     return;
@@ -30,6 +36,8 @@ export default function Submitstory() {
       storyId: crypto.randomUUID(),
       storyText: publicStory.content,
       fictionalLocation: publicStory.location,
+      userId: currentUser.uid,
+      authorName: currentUser.displayName ?? "Anonymous",
       triggerTags: [], // we’ll wire this later
       createdAt: serverTimestamp(),
     });
@@ -115,7 +123,7 @@ export default function Submitstory() {
         }))
       }
     />
-    Inform relevant authorities
+    <span>Inform relevant authorities</span>
   </label>
 
   <label className="flex items-center gap-2 text-sm">
@@ -129,7 +137,7 @@ export default function Submitstory() {
         }))
       }
     />
-    Open to anonymous group conference
+    <span>Open to anonymous group conference</span>
   </label>
   <button
   onClick={handleSubmit}
