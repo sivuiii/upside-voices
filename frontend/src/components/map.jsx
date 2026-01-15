@@ -3,7 +3,7 @@ import StatsPanel from "./StatsPanel";
 import ConferenceRoom from "./ConferenceRoom";
 import { useState } from "react";
 
-export default function map(){
+export default function MapPage(){
 
   // demo group id (later backend will send this)
   const [groupId] = useState("demoGroup123");

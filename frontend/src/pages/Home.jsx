@@ -47,7 +47,7 @@ export default function Home() {
             to={`/story/${story.id}`}
             className="block p-4 bg-zinc-800 rounded"
           >
-            <p className="line-clamp-2">{story.storyText}</p>
+            <p className="line-clamp-2">{story.storyText ?? story.content}</p>
           </Link>
         ))}
     </div>

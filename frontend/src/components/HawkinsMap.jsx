@@ -13,7 +13,7 @@ export default function HawkinsMap(){
 
     const zones = {
       North:[28.62,77.22],
-      South:[28.60,77.21],
+      South:[28.6,77.21],
       East:[28.61,77.24],
       West:[28.61,77.19]
     };
@@ -45,6 +45,10 @@ export default function HawkinsMap(){
       blur:25,
       minOpacity:0.4
     }).addTo(map);
+
+    return () => {
+      map.remove();
+    };
 
   },[]);
 

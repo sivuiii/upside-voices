@@ -98,12 +98,12 @@ const [acknowledged, setAcknowledged] = useState(false);
   return (
     <div className="p-6 text-white space-y-4">
       <p className="whitespace-pre-wrap text-lg">
-        {story.storyText}
+        {story.storyText ?? story.content}
       </p>
 
-      {story.fictionalLocation && (
+      {(story.fictionalLocation ?? story.location) && (
         <p className="text-sm text-zinc-400">
-          Location: {story.fictionalLocation}
+          Location: {story.fictionalLocation ?? story.location}
         </p>
       )}
     </div>
