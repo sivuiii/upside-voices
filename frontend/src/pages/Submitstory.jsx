@@ -1,7 +1,8 @@
 
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
+import { db } from "../firebase/config";
+import { detectTriggers } from "../utils/detectTriggers";
 
 
 export default function Submitstory() {
@@ -31,16 +32,16 @@ export default function Submitstory() {
   }
 
   try {
-    // Write PUBLIC story
-    await addDoc(collection(db, "stories_public"), {
-      storyId: crypto.randomUUID(),
-      storyText: publicStory.content,
-      fictionalLocation: publicStory.location,
-      userId: currentUser.uid,
-      authorName: currentUser.displayName ?? "Anonymous",
-      triggerTags: [], // we’ll wire this later
-      createdAt: serverTimestamp(),
-    });
+    const triggers = detectTriggers(publicStory.content);
+
+await addDoc(collection(db, "stories_public"), {
+  storyId: crypto.randomUUID(),
+  storyText: publicStory.content,
+  fictionalLocation: publicStory.location,
+  triggerTags: triggers,
+  createdAt: serverTimestamp(),
+});
+
 
     alert("Story shared anonymously.");
 
