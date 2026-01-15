@@ -27,9 +27,11 @@ export default function ConferenceRoom({ groupId }) {
   }, [groupId]);
 
   return (
-    <div>
-      <p>You are joining as <b>{alias}</b></p>
-      <div id="jitsi-container" style={{ height: "500px", width: "100%" }}></div>
+    <div className="bg-[#111] p-6 rounded-xl border border-gray-800 shadow-2xl">
+      <p className="text-gray-300 mb-4 font-mono tracking-wide">
+        Secure Link Established. Alias: <span className="text-primary font-bold text-glow">{alias}</span>
+      </p>
+      <div id="jitsi-container" className="w-full h-[500px] bg-black rounded-lg overflow-hidden border border-gray-700 shadow-inner"></div>
     </div>
   );
 }

@@ -16,7 +16,9 @@ export default function Home() {
           id: doc.id,
           ...doc.data(),
         }));
-        setStories(data);
+        // Randomize the order of stories
+        const shuffled = data.sort(() => 0.5 - Math.random());
+        setStories(shuffled);
       } catch (error) {
         console.error("Error fetching stories:", error);
       } finally {
@@ -34,9 +36,9 @@ export default function Home() {
       <div className="relative w-full">
         <div className="absolute inset-0 h-[600px] w-full overflow-hidden z-0">
           <img
-            alt="Dark atmospheric street scene resembling Hawkins"
+            alt="Dark atmospheric street scene resembling Hawkins Upside Down"
             className="w-full h-full object-cover object-center opacity-40 grayscale-[30%]"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKiSitY2nMyoOzGO99ggN5sKXZIIkNeg3p8EIBi_PNonjuExv__Z5Yngf2DwG1c72zBkWGElI5BcrFsjPzHI6yoJV6w9JxYKUwFD-robl1YQqRQs30x3H7GyYU6ikahw9FGdOwjxkPVp_PHHMvh2E-evyjFSlwuvfD7GFrtPpPbLcshE6sTMyQ5gwYAVTQ0aDU4YFfm0eHC-2WWiHRb8NnpKrI3_EiGE49XA9-_V29I_PJ6BLIs94Sz1ztMdO8IZ-HrMk5smCrzm_w"
+            src="https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&w=2560&auto=format&fit=crop"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/90 via-[#050505]/40 to-transparent" />
@@ -104,10 +106,10 @@ export default function Home() {
               <Link
                 key={story.id}
                 to={`/story/${story.id}`}
-                className="group bg-[#111111] border border-gray-800 hover:border-gray-600 rounded-lg p-5 transition-all duration-300 hover:bg-[#1a1a1a] cursor-pointer relative overflow-hidden block"
+                className="group bg-[#111111] border border-gray-800 hover:border-gray-600 rounded-lg p-5 transition-all duration-300 hover:bg-[#1a1a1a] cursor-pointer relative overflow-hidden block hover-glitch"
               >
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#6366f1] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className="text-[#6366f1] font-semibold text-xl mb-2 text-glow-blue group-hover:text-indigo-400">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-primary font-semibold text-xl mb-2 text-glow group-hover:text-red-400">
                   {story.title ?? story.storyText ?? story.content}
                 </h3>
                 {story.content && (

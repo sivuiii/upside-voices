@@ -18,18 +18,7 @@ export default function SceneFX() {
       <div className="fx-vines fx-vines-left" />
       <div className="fx-vines fx-vines-right" />
       <div className="fx-bats">
-        {bats.map((bat, i) => (
-          <span
-            key={i}
-            className="fx-bat"
-            style={{
-              top: bat.top,
-              left: bat.left,
-              animationDelay: bat.delay,
-              animationDuration: bat.duration,
-            }}
-          />
-        ))}
+        {/* Bats removed as per user request */}
       </div>
     </div>
   );

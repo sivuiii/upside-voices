@@ -6,20 +6,54 @@
 }
 
 :root {
-  --primary-color: #ff4d4d;
-  --background-color: #1a1a2e;
-  --accent-color: #00ffcc;
-  --text-color: #e0e0e0;
+  --primary-color: #ff3333;
+  --background-color: #020000;
+  --accent-color: #bc2828;
+  --text-color: #e5e5e5;
 }
 
 [data-theme="dark"] {
-  --background-color: #1a1a2e;
-  --text-color: #e0e0e0;
+  --background-color: #020000;
+  --text-color: #e5e5e5;
 }
 
 [data-theme="light"] {
-  --background-color: #f5f5f5;
+  /* Keeping dark retro even in light mode for now as per image request, or inverted */
+  --background-color: #eeeeee;
   --text-color: #111111;
+}
+
+@keyframes glitch-skew {
+  0% {
+    transform: skew(0deg);
+  }
+
+  20% {
+    transform: skew(-2deg);
+  }
+
+  40% {
+    transform: skew(2deg);
+  }
+
+  60% {
+    transform: skew(-1deg);
+  }
+
+  80% {
+    transform: skew(1deg);
+  }
+
+  100% {
+    transform: skew(0deg);
+  }
+}
+
+.hover-glitch:hover {
+  animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  box-shadow: 0 0 15px var(--primary-color), inset 0 0 10px var(--accent-color);
+  border-color: var(--primary-color);
+  background: rgba(40, 0, 0, 0.8) !important;
 }
 
 

@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import TopNav from "../components/TopNav";
+import GlitchButton from "../components/GlitchButton";
 import { auth, db } from "../firebase/config";
 
 export default function Profile() {
@@ -41,23 +42,24 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6 space-y-4">
+    <div className="min-h-screen bg-transparent text-default p-6 space-y-4 relative">
+      <div className="fixed inset-0 -z-10 bg-scanlines opacity-10 pointer-events-none" />
       <TopNav />
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold">Your stories</h1>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-800 pb-6 mb-6">
+        <h1 className="text-3xl font-bold text-primary tracking-widest uppercase text-glow">Personal Archives</h1>
+        <div className="flex items-center gap-4">
           <Link
             to="/submit"
-            className="px-4 py-2 rounded bg-red-600 hover:bg-red-500 text-white text-sm"
+            className="px-5 py-2 rounded bg-primary text-white font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-900/30 text-sm tracking-wide transform hover:scale-105"
           >
-            Share a story
+            NEW TRANSMISSION
           </Link>
           <button
             type="button"
             onClick={() => signOut(auth)}
-            className="px-4 py-2 rounded border border-zinc-700 text-sm text-zinc-200 hover:border-red-500/60"
+            className="px-5 py-2 rounded border border-gray-600 text-gray-400 hover:text-white hover:border-gray-400 hover:bg-white/5 transition-all text-sm tracking-wide uppercase"
           >
-            Log out
+            Terminate Session
           </button>
         </div>
       </div>
@@ -74,10 +76,11 @@ export default function Profile() {
 
       {!loading &&
         stories.map((story) => (
-          <div key={story.id} className="p-4 bg-zinc-900 border border-zinc-800 rounded">
-            <p className="text-lg">{story.title ?? story.storyText ?? story.content}</p>
+          <div key={story.id} className="p-6 bg-[#111] border border-gray-800 rounded-lg hover:border-gray-600 transition-all shadow-lg group relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+            <p className="text-xl font-semibold text-gray-200 group-hover:text-primary transition-colors">{story.title ?? story.storyText ?? story.content}</p>
             {story.content && (
-              <p className="text-sm text-zinc-400 mt-2">
+              <p className="text-sm text-gray-400 mt-2 line-clamp-3">
                 {story.content}
               </p>
             )}
@@ -95,17 +98,17 @@ export default function Profile() {
             {scheduledMeetings.map((meeting) => (
               <div
                 key={meeting.id}
-                className="p-4 bg-zinc-900 border border-zinc-800 rounded flex flex-wrap items-center justify-between gap-3"
+                className="p-4 bg-[#111] border border-gray-800 rounded-lg flex flex-wrap items-center justify-between gap-3 hover:border-accent/50 transition-colors shadow-lg"
               >
                 <div>
-                  <p className="text-lg">{meeting.title}</p>
-                  <p className="text-sm text-zinc-400">{meeting.startsAt}</p>
+                  <p className="text-lg font-medium text-gray-200">{meeting.title}</p>
+                  <p className="text-sm text-accent">{meeting.startsAt}</p>
                 </div>
                 <a
                   href={meeting.joinUrl}
-                  className="px-4 py-2 rounded bg-red-600 hover:bg-red-500 text-white text-sm"
+                  className="px-4 py-2 rounded bg-primary hover:bg-red-600 text-white text-sm font-semibold shadow-md transition-all"
                 >
-                  Join meeting
+                  JOIN SIGNAL
                 </a>
               </div>
             ))}

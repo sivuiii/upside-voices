@@ -66,5 +66,5 @@ export default function HawkinsMap() {
     };
   }, []);
 
-  return <div id="hawkins-map" style={{ height: "500px" }} />;
+  return <div id="hawkins-map" style={{ height: "600px" }} className="w-full bg-[#050505] grayscale-[20%] contrast-125 saturate-150" />;
 }

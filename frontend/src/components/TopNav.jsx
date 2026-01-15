@@ -23,27 +23,27 @@ export default function TopNav({ showProfile = true }) {
         {!isSubmit && (
           <Link
             to="/submit"
-            className="px-3 py-1.5 text-sm rounded bg-red-600 hover:bg-red-500 text-white"
+            className="px-4 py-1.5 text-sm font-medium tracking-wider rounded bg-primary hover:bg-red-600 text-white shadow-lg shadow-red-900/20 transition-all transform hover:scale-105"
           >
-            Share
+            SHARE
           </Link>
         )}
 
         {!isMap && (
           <Link
             to="/map"
-            className="px-3 py-1.5 text-sm rounded border border-zinc-700 text-zinc-200 hover:border-red-500/60"
+            className="px-4 py-1.5 text-sm font-medium tracking-wider rounded border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 hover:bg-white/5 transition-all"
           >
-            Map
+            MAP
           </Link>
         )}
 
         {showProfile && !isProfile && (
           <Link
             to="/profile"
-            className="px-3 py-1.5 text-sm rounded border border-zinc-700 text-zinc-200 hover:border-red-500/60"
+            className="px-4 py-1.5 text-sm font-medium tracking-wider rounded border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 hover:bg-white/5 transition-all"
           >
-            Profile
+            PROFILE
           </Link>
         )}
       </div>

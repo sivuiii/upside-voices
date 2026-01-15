@@ -22,28 +22,36 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
-      <div className="max-w-5xl mx-auto space-y-6">
-        <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-6 space-y-4">
-        <h1 className="text-2xl font-semibold">Sign in</h1>
-        <p className="text-zinc-400">
-          Anonymous login is disabled. Please continue with Google.
-        </p>
+    <div className="min-h-screen bg-background text-default p-6 flex items-center justify-center relative overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-scanlines opacity-20 pointer-events-none" />
+      <div className="relative z-10 w-full max-w-md bg-[#111111] border border-gray-800 rounded-xl p-8 space-y-6 shadow-2xl shadow-red-900/10">
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold text-primary tracking-widest uppercase text-glow">Sign in</h1>
+          <p className="text-gray-400 text-sm tracking-wider">
+            Clearance Level 1 Required
+          </p>
+        </div>
 
         {error && (
-          <div className="text-sm text-red-400 bg-red-950/40 border border-red-900 rounded p-3">
+          <div className="text-sm text-red-300 bg-red-900/20 border border-red-800/50 rounded p-4">
             {error}
           </div>
         )}
 
-        <button
-          type="button"
-          onClick={handleGoogleSignIn}
-          disabled={loading}
-          className="w-full py-2 rounded bg-white text-black font-medium hover:bg-zinc-200 disabled:opacity-60"
-        >
-          {loading ? "Signing in…" : "Continue with Google"}
-        </button>
+        <div className="pt-4">
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            disabled={loading}
+            className="w-full py-3 px-4 rounded bg-zinc-800 hover:bg-zinc-700 text-white font-medium transition-all border border-zinc-700 hover:border-zinc-500 flex items-center justify-center gap-3 group relative overflow-hidden"
+          >
+            <span className="relative z-10">{loading ? "Authenticating..." : "Continue with Google"}</span>
+            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </button>
+        </div>
+
+        <div className="text-center text-xs text-gray-600 uppercase tracking-widest pt-4">
+          Property of Hawkins National Laboratory
         </div>
       </div>
     </div>
